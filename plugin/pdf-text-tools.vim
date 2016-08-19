@@ -9,7 +9,10 @@ let g:loaded_pdf_text_tools = 1
 " line markers; for the same reason, we can't regex replace new lines
 command! -range FilterPDFText silent <line1>,<line2>s/$/ /e | silent <line1>,<line2>s/\-\s\+$//e | silent <line1>,<line2>s/\s\+/ /ge | silent <line1>,<line2>s/^\s\+//e | <line1>,<line2>join!
 
-"nnoremap <leader>q :'{,'}FilterPDFText<CR>:s/\s\+$//e<CR>O<Esc>jo<Esc>kgqip
-nnoremap <expr> <leader>q &textwidth == 0 ?  'Vip:FilterPDFText<CR>:s/\s\+$//e<CR>' : 'Vip:FilterPDFText<CR>:s/\s\+$//e<CR>gqip'
+" TODO: This probably overrides whatever was visually selected, but it
+" probably shouldn't.
+nnoremap <expr> <leader>q &textwidth == 0 ?
+  \ 'Vip:FilterPDFText<CR>:s/\s\+$//e<CR>' :
+  \ 'Vip:FilterPDFText<CR>:s/\s\+$//e<CR>gqip'
 
 " vim: sw=2 et:
