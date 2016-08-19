@@ -16,7 +16,7 @@ command! -range FilterPDFText silent <line1>,<line2>s/$/ /e |
 
 " TODO: This probably overrides whatever was visually selected, but it
 " probably shouldn't.
-nnoremap <expr> <leader>q &textwidth == 0 ?
+nnoremap <expr> Q &textwidth == 0 ?
   \ 'Vip:FilterPDFText<CR>:s/\s\+$//e<CR>' :
   \ 'Vip:FilterPDFText<CR>:s/\s\+$//e<CR>gqip'
 
