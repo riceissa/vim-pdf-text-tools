@@ -14,10 +14,12 @@ command! -range FilterPDFText silent <line1>,<line2>s/$/ /e |
   \ silent <line1>,<line2>s/^\s\+//e |
   \ <line1>,<line2>join!
 
-" TODO: This probably overrides whatever was visually selected, but it
-" probably shouldn't.
-nnoremap <expr> Q &textwidth == 0 ?
-  \ 'Vip:FilterPDFText<CR>:s/\s\+$//e<CR>' :
-  \ 'Vip:FilterPDFText<CR>:s/\s\+$//e<CR>gqip'
+if "" == mapcheck("Q","n")
+  " TODO: This probably overrides whatever was visually selected, but it
+  " probably shouldn't.
+  nnoremap <expr> Q &textwidth == 0 ?
+    \ 'Vip:FilterPDFText<CR>:s/\s\+$//e<CR>' :
+    \ 'Vip:FilterPDFText<CR>:s/\s\+$//e<CR>gqip'
+endif
 
 " vim: sw=2 et:
